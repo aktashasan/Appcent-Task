@@ -14,17 +14,15 @@ public class Content implements Serializable {
     private String id;
 
     @Field
-    private String firstName;
+    private String explanation;
 
     @Field
-    private String lastName;
+    private String title;
 
     @Field
-    private String email;
+    private String priority;
 
     @Field
-    private String username;
+    private String ticket;
 
-    @Field
-    private String password;
 }

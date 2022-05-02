@@ -13,11 +13,10 @@ public class ContentMapperImpl {
         Content content = new Content();
 
         content.setId(contentDTO.getId());
-        content.setFirstName(contentDTO.getFirstName());
-        content.setLastName(contentDTO.getLastName());
-        content.setEmail(contentDTO.getEmail());
-        content.setUsername(contentDTO.getUsername());
-        content.setPassword(contentDTO.getPassword());
+        content.setExplanation(contentDTO.getExplanation());
+        content.setTitle(contentDTO.getTitle());
+        content.setPriority(contentDTO.getPriority());
+        content.setTicket(contentDTO.getTicket());
 
         return content;
     }
@@ -30,11 +29,10 @@ public class ContentMapperImpl {
         ContentDTO contentDTO = new ContentDTO();
 
         contentDTO.setId(content.getId());
-        contentDTO.setFirstName(content.getFirstName());
-        contentDTO.setLastName(content.getLastName());
-        contentDTO.setEmail(content.getEmail());
-        contentDTO.setUsername(content.getUsername());
-        contentDTO.setPassword(content.getPassword());
+        contentDTO.setExplanation(content.getExplanation());
+        contentDTO.setTitle(content.getTitle());
+        contentDTO.setPriority(content.getPriority());
+        contentDTO.setTicket(content.getTicket());
 
         return contentDTO;
     }

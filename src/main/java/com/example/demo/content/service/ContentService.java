@@ -16,24 +16,7 @@ public class ContentService {
     private final ContentRepository contentRepository;
 
     public ContentDTO addContent(ContentDTO contentDTO) throws Exception {
-        if (contentDTO == null) {
-            throw new Exception("Tüm alanlar boş olamaz!");
-        }
-        else if (contentDTO.getFirstName() == null){
-            throw new Exception("isim alani bos olamaz!");
-        }
-        else if(contentDTO.getLastName() == null){
-            throw new Exception("Soyadi alani bos olamaz!");
-        }
-        else if(contentDTO.getEmail() == null){
-            throw new Exception("Email alani bos olamaz!");
-        }
-        else if (contentDTO.getUsername() == null){
-            throw new Exception("Kullanici alani bos olamaz!");
-        }
-        else if (contentDTO.getPassword() == null){
-            throw new Exception("Sifre alani bos olamaz!");
-        }
+
         Content content = contentRepository.save(ContentMapperImpl.toEntity(contentDTO));
         return ContentMapperImpl.toDTO(content);
     }

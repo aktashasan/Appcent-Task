@@ -25,6 +25,7 @@ class ContentServiceTest {
     void addContent() throws Exception {
         ContentDTO contentDTO = new ContentBuilder()
                 .buildSomeDummy()
+                .withTicket("@iş")
                 .build();
         ContentDTO savedContent = contentService.addContent(contentDTO);
         Assertions.assertNotNull(savedContent.getId());

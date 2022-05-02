@@ -6,9 +6,8 @@ import lombok.Data;
 public class ContentDTO {
 
     private String id;
-    private String firstName;
-    private String lastName;
-    private String email;
-    private String username;
-    private String password;
+    private String explanation;
+    private String title;
+    private String priority;
+    private String ticket;
 }

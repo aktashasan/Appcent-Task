@@ -11,37 +11,31 @@ public class ContentBuilder {
     private ContentDTO contentDTO = new ContentDTO();
 
     public ContentBuilder buildSomeDummy(){
-        this.contentDTO.setFirstName("Hasan");
-        this.contentDTO.setLastName("Aktas");
-        this.contentDTO.setEmail("aktashasan1130@gmail.com");
-        this.contentDTO.setUsername("aktashasan");
-        this.contentDTO.setPassword("12345");
+        this.contentDTO.setExplanation("makarna,ekmek");
+        this.contentDTO.setTitle("#Alışveriş");
+        this.contentDTO.setPriority("1.öncelik");
+        this.contentDTO.setTicket("@ev");
 
         return this;
     }
 
-    public ContentBuilder withFirstName(String firstName){
-        this.contentDTO.setFirstName(firstName);
+    public ContentBuilder withExplanation(String explanation){
+        this.contentDTO.setExplanation(explanation);
         return this;
     }
 
-    public ContentBuilder withLastName(String lastName){
-        this.contentDTO.setLastName(lastName);
+    public ContentBuilder withTitle(String title){
+        this.contentDTO.setTitle(title);
         return this;
     }
 
-    public ContentBuilder withEmail(String email){
-        this.contentDTO.setEmail(email);
+    public ContentBuilder withPriority(String priority){
+        this.contentDTO.setPriority(priority);
         return this;
     }
 
-    public ContentBuilder withUsername(String username){
-        this.contentDTO.setUsername(username);
-        return this;
-    }
-
-    public ContentBuilder withPassword(String password){
-        this.contentDTO.setPassword(password);
+    public ContentBuilder withTicket(String ticket){
+        this.contentDTO.setTicket(ticket);
         return this;
     }
 
