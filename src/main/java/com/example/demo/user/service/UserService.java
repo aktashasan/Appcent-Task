@@ -5,6 +5,7 @@ import com.example.demo.user.model.UserDTO;
 import com.example.demo.user.model.UserMapperImpl;
 import com.example.demo.user.repository.UserRepository;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -13,6 +14,7 @@ import java.util.Optional;
 
 @Service
 @AllArgsConstructor
+@Slf4j
 public class UserService {
 
     private final UserRepository userRepository;
@@ -66,5 +68,11 @@ public class UserService {
             return Boolean.TRUE;
         }
         return Boolean.FALSE;
+    }
+
+    public UserDTO findUserByUsernameAndPassword(String username, String password){
+        User user = userRepository.findByUsernameAndPassword(username,password);
+        log.info(String.valueOf(user));
+        return UserMapperImpl.toDTO(user);
     }
 }

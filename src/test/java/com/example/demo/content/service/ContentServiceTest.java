@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.data.mongo.AutoConfigureDataMongo;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
@@ -53,4 +55,15 @@ class ContentServiceTest {
     }
 
 
+    @Test
+    void findAllContents() throws Exception {
+        contentRepository.deleteAll();
+        ContentDTO contentDTO = new ContentBuilder()
+                .buildSomeDummy()
+                .build();
+
+        contentService.addContent(contentDTO);
+        List<ContentDTO> contentDTOList = contentService.findAllContents();
+        Assertions.assertEquals(1,contentDTOList.size());
+    }
 }

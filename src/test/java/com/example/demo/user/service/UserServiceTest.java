@@ -64,4 +64,17 @@ class UserServiceTest {
         Boolean deletedUser = userService.deleteUserById(savedUser.getId());
         Assertions.assertEquals(deletedUser,Boolean.TRUE);
     }
+
+    @Test
+    void findUserByUsernameAndPassword() throws Exception {
+        userRepository.deleteAll();
+        UserDTO userDTO = new UserBuilder()
+                .buildSomeDummy()
+                .withUsername("asdfs")
+                .withPassword("asdfsad")
+                .build();
+        UserDTO savedUser = userService.addUser(userDTO);
+        UserDTO findUser = userService.findUserByUsernameAndPassword(userDTO.getUsername(),userDTO.getPassword());
+        Assertions.assertEquals(savedUser,findUser);
+    }
 }
