@@ -12,6 +12,7 @@ import org.springframework.boot.test.autoconfigure.data.mongo.AutoConfigureDataM
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.ResultActions;
@@ -40,6 +41,7 @@ class UserResourceTest {
     private UserRepository userRepository;
 
     @Test
+    @WithMockUser(username = "admin", password = "admin")
     void addUser() throws Exception {
         userRepository.deleteAll();
         UserDTO userDTO = new UserBuilder()
@@ -62,6 +64,7 @@ class UserResourceTest {
     }
 
     @Test
+    @WithMockUser(username = "admin", password = "admin")
     void findUserById() throws Exception {
         UserDTO userDTO = new UserBuilder()
             .buildSomeDummy()
@@ -81,6 +84,7 @@ class UserResourceTest {
     }
 
     @Test
+    @WithMockUser(username = "admin", password = "admin")
     void deleteUserById() throws Exception {
         UserDTO userDTO = new UserBuilder()
                 .buildSomeDummy()
@@ -99,6 +103,54 @@ class UserResourceTest {
     }
 
     @Test
+    @WithMockUser(username = "admin", password = "admin")
+    void findUserByUsernameAndPassword() throws Exception{
+        userRepository.deleteAll();
+        UserDTO userDTO = new UserBuilder()
+                .buildSomeDummy()
+                .withUsername("hasan")
+                .withPassword("hasan")
+                .build();
+        UserDTO savedUser = userService.addUser(userDTO);
+
+        ResultActions resultActions = this.mockMvc
+                .perform(get("/app/user/get/usernameAndPassword/"
+                        + savedUser.getUsername() + "/"
+                        + savedUser.getPassword()))
+                .andDo(print())
+                .andExpect(status().isOk());
+        MvcResult mvcResult = resultActions.andReturn();
+        String contentAsString = mvcResult.getResponse().getContentAsString();
+
+        UserDTO result = objectMapper.readValue(contentAsString, UserDTO.class);
+        Assertions.assertEquals(savedUser.getUsername(),result.getUsername());
+        Assertions.assertEquals(savedUser.getPassword(),result.getPassword());
+
+    }
+
+    @Test
+    @WithMockUser(username = "admin", password = "admin")
+    void findByUsername() throws Exception {
+        userRepository.deleteAll();
+        UserDTO userDTO = new UserBuilder()
+                .buildSomeDummy()
+                .withUsername("hasan")
+                .build();
+        UserDTO savedUser = userService.addUser(userDTO);
+
+        ResultActions resultActions = this.mockMvc
+                .perform(get("/app/user/get/username/" + userDTO.getUsername()))
+                .andDo(print())
+                .andExpect(status().isOk());
+        MvcResult mvcResult = resultActions.andReturn();
+        String contentAsString = mvcResult.getResponse().getContentAsString();
+
+        UserDTO result = objectMapper.readValue(contentAsString, UserDTO.class);
+        Assertions.assertEquals(savedUser.getUsername(),result.getUsername());
+    }
+
+    @Test
+    @WithMockUser(username = "admin", password = "admin")
     void findAllUsers() throws Exception {
         userRepository.deleteAll();
         UserDTO userDTO = new UserBuilder()

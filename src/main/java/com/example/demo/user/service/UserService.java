@@ -70,6 +70,10 @@ public class UserService {
         return Boolean.FALSE;
     }
 
+    public User findByUsername(String username) {
+        return userRepository.findByUsername(username);
+    }
+
     public UserDTO findUserByUsernameAndPassword(String username, String password){
         User user = userRepository.findByUsernameAndPassword(username,password);
         log.info(String.valueOf(user));

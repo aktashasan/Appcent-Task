@@ -45,6 +45,7 @@ public class ContentService {
             throw new Exception("Id boş olamaz!");
         }
         Optional<Content> optional = contentRepository.findById(id);
+
         if(optional.isPresent()){
             Content content = optional.get();
             return ContentMapperImpl.toDTO(content);
@@ -62,6 +63,28 @@ public class ContentService {
             return Boolean.TRUE;
         }
         return Boolean.FALSE;
+    }
+
+    public ContentDTO updateContent(String id,String explanation, String title, String priority,String ticket) {
+
+        Optional<Content> optional = contentRepository.findById(id);
+
+        if(optional.isPresent()){
+
+        Content content = optional.get();
+        content.setId(id);
+        content.setTicket(ticket);
+        content.setPriority(priority);
+        content.setTitle(title);
+        content.setExplanation(explanation);
+
+        contentRepository.save(content);
+
+        return ContentMapperImpl.toDTO(content);
+        }
+
+        return null;
+
     }
 
 }

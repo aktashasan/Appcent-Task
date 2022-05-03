@@ -4,6 +4,7 @@ import com.example.demo.builder.content.ContentBuilder;
 import com.example.demo.content.model.ContentDTO;
 import com.example.demo.content.repository.ContentRepository;
 import com.example.demo.content.service.ContentService;
+import com.example.demo.user.model.UserDTO;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -12,9 +13,12 @@ import org.springframework.boot.test.autoconfigure.data.mongo.AutoConfigureDataM
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.ResultActions;
+
+import java.util.List;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -39,11 +43,12 @@ class ContentResourceTest {
 
 
     @Test
+    @WithMockUser(username = "admin", password = "admin")
     void addContent() throws Exception{
-        contentRepository.deleteAll();
         ContentDTO contentDTO = new ContentBuilder()
                 .buildSomeDummy()
                 .build();
+        ContentDTO savedContent = contentService.addContent(contentDTO);
 
         String jsonContent = objectMapper.writeValueAsString(contentDTO);
 
@@ -61,6 +66,7 @@ class ContentResourceTest {
     }
 
     @Test
+    @WithMockUser(username = "admin", password = "admin")
     void findContentById() throws Exception{
         ContentDTO contentDTO = new ContentBuilder()
                 .buildSomeDummy()
@@ -83,6 +89,7 @@ class ContentResourceTest {
     }
 
     @Test
+    @WithMockUser(username = "admin", password = "admin")
     void deleteContentById() throws Exception {
         ContentDTO contentDTO = new ContentBuilder()
                 .buildSomeDummy()
@@ -100,5 +107,27 @@ class ContentResourceTest {
 
         Boolean result = objectMapper.readValue(contentAsString, Boolean.class);
         Assertions.assertEquals(Boolean.TRUE,result);
+    }
+
+    @Test
+    @WithMockUser(username = "admin", password = "admin")
+    void findAllContents() throws Exception {
+        contentRepository.deleteAll();
+        ContentDTO contentDTO = new ContentBuilder()
+                .buildSomeDummy()
+                .build();
+        ContentDTO savedContent = contentService.addContent(contentDTO);
+
+        ResultActions resultActions = this.mockMvc
+                .perform(get("/app/contents/get/"))
+                .andDo(print())
+                .andExpect(status().isOk());
+        MvcResult mvcResult = resultActions.andReturn();
+        String contentAsString = mvcResult.getResponse().getContentAsString();
+
+        List<ContentDTO> result = objectMapper.readValue(contentAsString, List.class);
+        Assertions.assertEquals(1,result.size());
+
+
     }
 }

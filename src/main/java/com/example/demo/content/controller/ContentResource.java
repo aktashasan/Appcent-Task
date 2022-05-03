@@ -6,6 +6,8 @@ import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/app")
 @AllArgsConstructor
@@ -16,6 +18,11 @@ public class ContentResource {
     @PostMapping("/content/save")
     public ResponseEntity<ContentDTO> addContent (@RequestBody ContentDTO contentDTO) throws Exception {
         return ResponseEntity.ok(contentService.addContent(contentDTO));
+    }
+
+    @GetMapping("/contents/get")
+    public ResponseEntity<List<ContentDTO>> findAllContents() throws Exception{
+        return ResponseEntity.ok(contentService.findAllContents());
     }
 
     @GetMapping("/content/get/id/{id}")

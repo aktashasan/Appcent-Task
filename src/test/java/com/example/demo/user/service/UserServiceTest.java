@@ -1,7 +1,9 @@
 package com.example.demo.user.service;
 
 import com.example.demo.builder.user.UserBuilder;
+import com.example.demo.user.model.User;
 import com.example.demo.user.model.UserDTO;
+import com.example.demo.user.model.UserMapperImpl;
 import com.example.demo.user.repository.UserRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -76,5 +78,17 @@ class UserServiceTest {
         UserDTO savedUser = userService.addUser(userDTO);
         UserDTO findUser = userService.findUserByUsernameAndPassword(userDTO.getUsername(),userDTO.getPassword());
         Assertions.assertEquals(savedUser,findUser);
+    }
+
+    @Test
+    void findByUsername() throws Exception {
+        userRepository.deleteAll();
+        UserDTO userDTO = new UserBuilder()
+                .buildSomeDummy()
+                .withUsername("Hasanaktas")
+                .build();
+        UserDTO savedUser = userService.addUser(userDTO);
+        User findUsername = userService.findByUsername(savedUser.getUsername());
+        Assertions.assertEquals(savedUser, UserMapperImpl.toDTO(findUsername));
     }
 }
