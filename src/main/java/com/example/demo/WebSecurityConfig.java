@@ -1,6 +1,6 @@
 package com.example.demo;
 
-import com.example.demo.user.service.AuthenticationService;
+import com.example.demo.user.authentication.AuthenticationService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;

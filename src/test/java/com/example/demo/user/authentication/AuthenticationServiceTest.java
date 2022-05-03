@@ -1,8 +1,10 @@
-package com.example.demo.user.service;
+package com.example.demo.user.authentication;
 
 import com.example.demo.builder.user.UserBuilder;
+import com.example.demo.user.authentication.AuthenticationService;
 import com.example.demo.user.model.UserDTO;
 import com.example.demo.user.repository.UserRepository;
+import com.example.demo.user.service.UserService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +12,6 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 
-import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 @AutoConfigureMockMvc
 class AuthenticationServiceTest {

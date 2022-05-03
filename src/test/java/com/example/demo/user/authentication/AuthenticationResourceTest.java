@@ -1,4 +1,4 @@
-package com.example.demo.user.controller;
+package com.example.demo.user.authentication;
 
 import com.example.demo.builder.user.UserBuilder;
 import com.example.demo.user.model.UserDTO;
