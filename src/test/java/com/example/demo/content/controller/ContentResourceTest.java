@@ -130,4 +130,28 @@ class ContentResourceTest {
 
 
     }
+
+    @Test
+    @WithMockUser(username = "admin", password = "admin")
+    void updateContent() throws Exception{
+        ContentDTO contentDTO = new ContentBuilder()
+                .buildSomeDummy()
+                .build();
+        ContentDTO savedContent = contentService.addContent(contentDTO);
+
+        ContentDTO resultContent = contentService.updateContent(savedContent.getId(), "sdhf","ahsd","sdfha","sjdkf");
+
+
+        ResultActions resultActions = this.mockMvc
+                .perform(get("/app/content/update/" + resultContent.getId()+"/" + resultContent.getExplanation()
+               + "/" + resultContent.getPriority()+ "/" + resultContent.getTitle()+ "/" + resultContent.getTicket()))
+                .andDo(print())
+                .andExpect(status().isOk());
+        MvcResult mvcResult = resultActions.andReturn();
+        String contentAsString = mvcResult.getResponse().getContentAsString();
+
+        ContentDTO result = objectMapper.readValue(contentAsString, ContentDTO.class);
+        System.out.println(result);
+        Assertions.assertNotEquals(savedContent,result);
+    }
 }

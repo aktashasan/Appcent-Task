@@ -39,4 +39,13 @@ public class ContentResource {
         return ResponseEntity.ok(contentService.deleteContentById(id));
     }
 
+    @GetMapping("/content/update/{id}/{explanation}/{priority}/{title}/{ticket}")
+    public ResponseEntity<ContentDTO> updateContent(@PathVariable String id,
+                                                    @PathVariable String explanation,
+                                                    @PathVariable String priority,
+                                                    @PathVariable String title,
+                                                    @PathVariable String ticket){
+        return ResponseEntity.ok((contentService.updateContent(id,explanation,priority,title,ticket)));
+    }
+
 }
