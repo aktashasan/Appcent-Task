@@ -10,7 +10,6 @@ Eğer test fonksiyonlarını çalıştırmak istiyorsanız test klasöründeki u
 Projeyi frontend'e bağlamak için controller sınıfı ile frontend'e bağlanabilir. ve uygulama ayağı kaldırılabilir.
 
 Ayrıca aşağıdaki linkden projenin dockerize edilmiş halini bulabilirsiniz.
-https://hub.docker.com/repository/docker/hasanaktas/appcent
 
 Ayrıca dockerize etmek için öncelikle projedeki dockerfile dosyasına sahip olduğunuzdan emin olun. Daha sonra yan tarafta bulunan maven sekmesinden proje klasörleri açılır. Orada bulunan lifecycle sekmesine tıklanır. Altında bulunan packages'a çift tıklanarak proje ".jar" a build edilir. 
 Build işlemi bittikten sonra terminalden "docker build -t image-name ." komutunu çalıştırılır.
