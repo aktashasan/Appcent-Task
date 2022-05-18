@@ -1,4 +1,4 @@
-# Appcent-Task
+# task
 
 Bu Backend projesi mongodb database'ini kullanmaktadır. Bu proje'de database'e veri yollamak için öncelikle IDE'den projeyi pullamalısınız. 
 
