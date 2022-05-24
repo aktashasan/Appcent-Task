@@ -6,6 +6,7 @@ import com.example.demo.content.model.ContentMapperImpl;
 import com.example.demo.content.repository.ContentRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -65,18 +66,18 @@ public class ContentService {
         return Boolean.FALSE;
     }
 
-    public ContentDTO updateContent(String id,String explanation, String title, String priority,String ticket) {
+    public ContentDTO updateContent( ContentDTO contentDTO) {
 
-        Optional<Content> optional = contentRepository.findById(id);
+        Optional<Content> optional = contentRepository.findById(contentDTO.getId());
 
         if(optional.isPresent()){
 
         Content content = optional.get();
-        content.setId(id);
-        content.setTicket(ticket);
-        content.setPriority(priority);
-        content.setTitle(title);
-        content.setExplanation(explanation);
+        content.setId(contentDTO.getId());
+        content.setTicket(contentDTO.getTicket());
+        content.setPriority(contentDTO.getPriority());
+        content.setTitle(contentDTO.getTitle());
+        content.setExplanation(contentDTO.getExplanation());
 
         contentRepository.save(content);
 
