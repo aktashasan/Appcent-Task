@@ -1,5 +1,5 @@
 
-# To Do App
+# To Do App API
 
 Bu proje bir to do app API'dir. projeyi clone'layıp ayağa kaldırarak kullanabilirsiniz.
 
