@@ -50,7 +50,7 @@ Projeyi Docker ile pullayabilirsiniz
 
 | Parametre | Tip     | Açıklama                |
 | :-------- | :------- | :------------------------- |
-| `contentDTO` | `JSON` | **Body**. |
+| `contentDTO` | `object` | **Body**. |
 
 #### Öğeyi getir
 
@@ -84,6 +84,6 @@ Projeyi Docker ile pullayabilirsiniz
 
 | Parametre | Tip     | Açıklama                |
 | :-------- | :------- | :------------------------- |
-| `contentDTO` | `JSON` | **Body**. |
+| `contentDTO` | `object` | **Body**. |
 
   
