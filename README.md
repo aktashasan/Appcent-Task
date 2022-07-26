@@ -45,7 +45,7 @@ Projeyi Docker ile pullayabilirsiniz
 #### Tüm öğeleri getir
 
 ```http
-  Post /content/save
+  Post /app/content/save
 ```
 
 | Parametre | Tip     | Açıklama                |
@@ -55,7 +55,7 @@ Projeyi Docker ile pullayabilirsiniz
 #### Öğeyi getir
 
 ```http
-  GET /content/get/id/${id}
+  GET /app/content/get/id/${id}
 ```
 
 | Parametre | Tip     | Açıklama                       |
@@ -63,7 +63,7 @@ Projeyi Docker ile pullayabilirsiniz
 | `id`      | `string` | **id**. Çağrılacak öğenin anahtar değeri. |
 
 ```http
-  GET /contents/get
+  GET /app/contents/get
 ```
 
 | Parametre | Tip     | Açıklama                       |
@@ -71,7 +71,7 @@ Projeyi Docker ile pullayabilirsiniz
 | contentDTO      | `List` | **contentDTO**. Çağrılacak öğelerin içerikleri |
 
 ```http
-  DELETE /content/delete/${id}
+  DELETE /app/content/delete/${id}
 ```
 
 | Parametre | Tip     | Açıklama                       |
@@ -79,7 +79,7 @@ Projeyi Docker ile pullayabilirsiniz
 | `id`      | `string` | **id**. Silinecek öğenin anahtar değeri. |
 
 ```http
-  Post /content/update
+  Post /app/content/update
 ```
 
 | Parametre | Tip     | Açıklama                |
