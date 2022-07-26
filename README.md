@@ -1,20 +1,89 @@
-# task
 
-Bu Backend projesi mongodb database'ini kullanmaktadır. Bu proje'de database'e veri yollamak için öncelikle IDE'den projeyi pullamalısınız. 
+# To Do App
 
-Proje açıldıktan sonra kök klasördeki docker-compose.yaml dosyasını bulmalısınız. Bu dosya docker üzerinden sanal database oluşturmaktadır.
-Bu dosyayı services üzerinden run ettiğimiz zaman database'inizi oluşturacak. Artık uygulamayı ayağı kaldırabilirsiniz.
+Bu proje bir to do app API'dir. projeyi clone'layıp ayağa kaldırarak kullanabilirsiniz.
 
-Eğer test fonksiyonlarını çalıştırmak istiyorsanız test klasöründeki user ve content klasörlerinin içindeki service ve resource sınıflarını içeren ayrı ayrı klasörler bulunmaktadır. Buradaki bütün fonksiyonları teker teker çalıştırabilirsiniz. 
+Proje açıldıktan sonra kök klasördeki docker-compose.yaml dosyasını bulmalısınız. Bu dosya docker üzerinden sanal database oluşturmaktadır. Bu dosyayı services üzerinden run ettiğimiz zaman database'inizi oluşturacak. Artık uygulamayı ayağı kaldırabilirsiniz.
+## Bilgisayarınızda Çalıştırın
 
-Projeyi frontend'e bağlamak için controller sınıfı ile frontend'e bağlanabilir. ve uygulama ayağı kaldırılabilir.
+Projeyi klonlayın
 
-Ayrıca aşağıdaki linkden projenin dockerize edilmiş halini bulabilirsiniz.
+```bash
+  git clone https://github.com/aktashasan/to_do_app_backend
+```
 
-Ayrıca dockerize etmek için öncelikle projedeki dockerfile dosyasına sahip olduğunuzdan emin olun. Daha sonra yan tarafta bulunan maven sekmesinden proje klasörleri açılır. Orada bulunan lifecycle sekmesine tıklanır. Altında bulunan packages'a çift tıklanarak proje ".jar" a build edilir. 
-Build işlemi bittikten sonra terminalden "docker build -t image-name ." komutunu çalıştırılır.
-Bu komutu çalıştırdıktan sonra "docker run --name spring-docker-cont -p 8080:8080 image-name -d" komutu çalıştırılır ve konteyner'ınız docker da hazır olur.
+Proje dizinine gidin
 
-(win 10)
-Komut satırı açılır ve "docker login" komutu yazılarak docker'a login yapılır. images'lerimizi görmek için 'docker images' komutu ile bütün images'lerimiz görünür. Dockerhub'da yeni bir repository açıyoruz. "docker tag image-name dockerhub_username/repository-name" komutu çalışırarak yeni bir kopya image oluştururlur. 
-"docker push dockerhub_username/repository-name" yazarak konteyner'ımızı pushluyoruz. Böylece dockerize işlemi tamamlanmış oluyor.
+```bash
+  cd to_do_app_backend
+```
+
+  
+## Dockerize etmek
+Ayrıca dockerize etmek için öncelikle projedeki dockerfile dosyasına sahip olduğunuzdan emin olun. Daha sonra yan tarafta bulunan maven sekmesinden proje klasörleri açılır. Orada bulunan lifecycle sekmesine tıklanır. Altında bulunan packages'a çift tıklanarak proje ".jar" a build edilir. Build işlemi bittikten sonra terminalden aşağıdaki komut çalıştırılır.
+
+Proje dizininde iken
+
+```bash
+  docker build -t image-name .
+```
+ile build edilir.
+
+```bash
+  docker run --name spring-docker-cont -p 8080:8080 image-name -d
+```
+komutu ile docker üzerinde run edilir. 
+## Container
+
+Projeyi Docker ile pullayabilirsiniz
+
+```bash
+  docker pull hasanaktas/to_do_app_container
+```
+## API Kullanımı
+
+#### Tüm öğeleri getir
+
+```http
+  Post /content/save
+```
+
+| Parametre | Tip     | Açıklama                |
+| :-------- | :------- | :------------------------- |
+| `contentDTO` | `JSON` | **Body**. |
+
+#### Öğeyi getir
+
+```http
+  GET /content/get/id/${id}
+```
+
+| Parametre | Tip     | Açıklama                       |
+| :-------- | :------- | :-------------------------------- |
+| `id`      | `string` | **id**. Çağrılacak öğenin anahtar değeri. |
+
+```http
+  GET /contents/get
+```
+
+| Parametre | Tip     | Açıklama                       |
+| :-------- | :------- | :-------------------------------- |
+| contentDTO      | `List` | **contentDTO**. Çağrılacak öğelerin içerikleri |
+
+```http
+  DELETE /content/delete/${id}
+```
+
+| Parametre | Tip     | Açıklama                       |
+| :-------- | :------- | :-------------------------------- |
+| `id`      | `string` | **id**. Silinecek öğenin anahtar değeri. |
+
+```http
+  Post /content/update
+```
+
+| Parametre | Tip     | Açıklama                |
+| :-------- | :------- | :------------------------- |
+| `contentDTO` | `JSON` | **Body**. |
+
+  
