@@ -1,4 +1,4 @@
-FROM openjdk:11.0.15
-ADD ./target/*.jar /usr/src/app.jar
-WORKDIR /usr/src
-ENTRYPOINT ["java","-jar", "app.jar"]
+FROM openjdk:11
+ADD target/case.jar case.jar
+ENTRYPOINT ["java", "-jar","case.jar"]
+EXPOSE 8080
