@@ -25,12 +25,12 @@ Ayrıca dockerize etmek için öncelikle projedeki dockerfile dosyasına sahip o
 Proje dizininde iken
 
 ```bash
-  docker build -t image-name .
+  docker-compose build
 ```
 ile build edilir.
 
 ```bash
-  docker run --name spring-docker-cont -p 8080:8080 image-name -d
+  docker-compose up -d
 ```
 komutu ile docker üzerinde run edilir. 
 ## Container
