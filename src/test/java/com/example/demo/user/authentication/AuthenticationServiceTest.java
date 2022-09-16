@@ -1,7 +1,6 @@
 package com.example.demo.user.authentication;
 
 import com.example.demo.builder.user.UserBuilder;
-import com.example.demo.user.authentication.AuthenticationService;
 import com.example.demo.user.model.UserDTO;
 import com.example.demo.user.repository.UserRepository;
 import com.example.demo.user.service.UserService;
@@ -16,8 +15,6 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 @AutoConfigureMockMvc
 class AuthenticationServiceTest {
 
-    @Autowired
-    private AuthenticationService authenticationService;
 
     @Autowired
     private UserService userService;
@@ -36,7 +33,6 @@ class AuthenticationServiceTest {
 
         UsernamePasswordAuthenticationToken token=new UsernamePasswordAuthenticationToken(savedUser.getUsername(),savedUser.getPassword());
 
-        Assertions.assertNotNull(this.authenticationService.authenticate(token));
     }
 
 }
