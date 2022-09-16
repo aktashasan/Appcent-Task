@@ -20,7 +20,7 @@ Proje dizinine gidin
 
   
 ## Dockerize etmek
-Ayrıca dockerize etmek için öncelikle projedeki dockerfile dosyasına sahip olduğunuzdan emin olun. Daha sonra yan tarafta bulunan maven sekmesinden proje klasörleri açılır. Orada bulunan lifecycle sekmesine tıklanır. Altında bulunan packages'a çift tıklanarak proje ".jar" a build edilir. Build işlemi bittikten sonra terminalden aşağıdaki komut çalıştırılır.
+Ayrıca dockerize etmek için öncelikle projedeki dockerfile dosyasına sahip olduğunuzdan emin olun. Daha sonra yan tarafta bulunan maven sekmesinden proje klasörleri açılır. Orada bulunan lifecycle sekmesine tıklanır. Altında bulunan packages'a çift tıklanarak proje ".jar" a build edilir. jar dosyasının ismini "case.jar" olarak değişitiriniz. Bu işlem bittikten sonra terminalden aşağıdaki komut çalıştırılır.
 
 Proje dizininde iken
 
