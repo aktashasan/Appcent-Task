@@ -57,7 +57,7 @@ imajı pullamak için
 Docker'da çalıştırmak için
 
 ```bash
-  docker run --name to-do-app-api --link mongo-server:mongo-server -p 8080:8080 to_do_app_api
+  docker run --name to-do-app-api --link mongo-server:mongo-server -p 8080:8080 hasanaktas/to_do_app_container
 ```
 komutları terminalde yazılır.
 
