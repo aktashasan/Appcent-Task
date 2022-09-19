@@ -20,26 +20,47 @@ Proje dizinine gidin
 
   
 ## Dockerize etmek
-Ayrıca dockerize etmek için öncelikle projedeki dockerfile dosyasına sahip olduğunuzdan emin olun. Daha sonra yan tarafta bulunan maven sekmesinden proje klasörleri açılır. Orada bulunan lifecycle sekmesine tıklanır. Altında bulunan packages'a çift tıklanarak proje ".jar" a build edilir. jar dosyasının ismini "case.jar" olarak değişitiriniz. Bu işlem bittikten sonra terminalden aşağıdaki komut çalıştırılır.
+Dockerize etmek için öncelikle projedeki dockerfile dosyasına sahip olduğunuzdan emin olun. Daha sonra yan tarafta bulunan maven sekmesinden proje klasörleri açılır. Orada bulunan lifecycle sekmesine tıklanır. Altında bulunan packages'a çift tıklanarak proje ".jar" a build edilir. Bu işlem bittikten sonra terminalden aşağıdaki komut çalıştırılır.
+
+Mongo database'i docker üzerinde run etmek için
+
+```bash
+  docker run --name mongo-server -p 27017:27017 -d mongo
+```
+çalıştırılır.
 
 Proje dizininde iken
 
 ```bash
-  docker-compose build
+  docker build . -t to_do_app_api
 ```
 ile build edilir.
 
 ```bash
-  docker-compose up -d
+  docker run --name to-do-app-api --link mongo-server:mongo-server -p 8080:8080 to_do_app_api
 ```
 komutu ile docker üzerinde run edilir. 
 ## Container
 
-Projeyi Docker ile pullayabilirsiniz
+Sadece projeyi alıp çalıştırmak istiyorsanız, Dockerhub hesabımdan pullayıp çalıştırmak için
+
+Mongo kurulumu için
+```bash
+  docker run --name mongo-server -p 27017:27017 -d mongo
+```
+
+imajı pullamak için
 
 ```bash
   docker pull hasanaktas/to_do_app_container
 ```
+Docker'da çalıştırmak için
+
+```bash
+  docker run --name to-do-app-api --link mongo-server:mongo-server -p 8080:8080 to_do_app_api
+```
+komutları terminalde yazılır.
+
 ## API Kullanımı
 
 #### Tüm öğeleri getir
