@@ -44,9 +44,14 @@ komutu ile docker üzerinde run edilir.
 
 Sadece projeyi alıp çalıştırmak istiyorsanız, Dockerhub hesabımdan pullayıp çalıştırmak için
 
+database ile app arasındaki bağlantı için docker üzerinde network oluşturun
+```bash
+  docker network create mongodb
+```
+
 Mongo kurulumu için
 ```bash
-  docker run --name mongo-server -p 27017:27017 -d mongo
+  docker run --name mongo-server --network mongodb -p 27017:27017 -d mongo
 ```
 
 imajı pullamak için
@@ -57,7 +62,7 @@ imajı pullamak için
 Docker'da çalıştırmak için
 
 ```bash
-  docker run --name to-do-app-api --link mongo-server:mongo-server -p 8080:8080 hasanaktas/to_do_app_container
+  docker run --name to-do-app-api --network mongodb -p 8080:8080 hasanaktas/to_do_app_container
 ```
 komutları terminalde yazılır.
 
