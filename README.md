@@ -62,7 +62,7 @@ imajı pullamak için
 Docker'da çalıştırmak için
 
 ```bash
-  docker run --name to-do-app-api --network mongodb -p 8080:8080 hasanaktas/to_do_app_container
+  docker run --name to-do-app-api --network mongodb -p 8080:8080 hasanaktas/to_do_app_api_container
 ```
 komutları terminalde yazılır.
 
