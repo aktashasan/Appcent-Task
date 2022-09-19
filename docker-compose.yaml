@@ -6,8 +6,8 @@ services:
     ports:
       - 8080:8080
     depends_on:
-      - mongo
-  mongo:
+      - mongo_db
+  mongo_db:
     image: "mongo:latest"
     restart: always
     ports:
