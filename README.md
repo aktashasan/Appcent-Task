@@ -71,7 +71,10 @@ komutları terminalde yazılır.
 
 | Parametre | Tip     | Açıklama                |
 | :-------- | :------- | :------------------------- |
-| `contentDTO` | `object` | **Body**. |
+| `explanation` | `string` | **explanation**. |
+| `title` | `string` | **title**. |
+| `priority` | `string` | **priority**. |
+| `ticket` | `string` | **ticket**. |
 
 #### Öğeyi getir
 
@@ -105,6 +108,9 @@ komutları terminalde yazılır.
 
 | Parametre | Tip     | Açıklama                |
 | :-------- | :------- | :------------------------- |
-| `contentDTO` | `object` | **Body**. |
-
+| `id` | `string` | **content**. |
+| `explanation` | `string` | **explanation**. |
+| `title` | `string` | **title**. |
+| `priority` | `string` | **priority**. |
+| `ticket` | `string` | **ticket**. |
   
