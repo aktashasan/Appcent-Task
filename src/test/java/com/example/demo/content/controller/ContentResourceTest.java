@@ -4,7 +4,6 @@ import com.example.demo.builder.content.ContentBuilder;
 import com.example.demo.content.model.ContentDTO;
 import com.example.demo.content.repository.ContentRepository;
 import com.example.demo.content.service.ContentService;
-import com.example.demo.user.model.UserDTO;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -20,8 +19,7 @@ import org.springframework.test.web.servlet.ResultActions;
 
 import java.util.List;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -98,7 +96,7 @@ class ContentResourceTest {
         ContentDTO savedContent = contentService.addContent(contentDTO);
 
         ResultActions resultActions = this.mockMvc
-                .perform(get("/app/content/delete/" + savedContent.getId()))
+                .perform(delete("/app/content/delete/" + savedContent.getId()))
                 .andDo(print())
                 .andExpect(status().isOk());
 
@@ -131,27 +129,26 @@ class ContentResourceTest {
 
     }
 
-    @Test
-    @WithMockUser(username = "admin", password = "admin")
-    void updateContent() throws Exception{
-        ContentDTO contentDTO = new ContentBuilder()
-                .buildSomeDummy()
-                .build();
-        ContentDTO savedContent = contentService.addContent(contentDTO);
-
-       /* ContentDTO resultContent = contentService.updateContent(savedContent.getId(), "sdhf","ahsd","sdfha","sjdkf");
-
-
-        ResultActions resultActions = this.mockMvc
-                .perform(get("/app/content/update/" + resultContent.getId()+"/" + resultContent.getExplanation()
-               + "/" + resultContent.getPriority()+ "/" + resultContent.getTitle()+ "/" + resultContent.getTicket()))
-                .andDo(print())
-                .andExpect(status().isOk());
-        MvcResult mvcResult = resultActions.andReturn();
-        String contentAsString = mvcResult.getResponse().getContentAsString();
-
-        ContentDTO result = objectMapper.readValue(contentAsString, ContentDTO.class);
-        System.out.println(result);
-        Assertions.assertNotEquals(savedContent,result);*/
-    }
+//    @Test
+//    @WithMockUser(username = "admin", password = "admin")
+//    void updateContent() throws Exception{
+//        ContentDTO contentDTO = new ContentBuilder()
+//                .buildSomeDummy()
+//                .build();
+//        ContentDTO savedContent = contentService.addContent(contentDTO);
+//
+//        ContentDTO resultContent = contentService.updateContent(savedContent.getId(), "sdhf","ahsd","sdfha","sjdkf");
+//
+//
+//        ResultActions resultActions = this.mockMvc
+//                .perform(get("/app/content/update/" + savedContent.getId())
+//                .andDo(print())
+//                .andExpect(status().isOk());
+//        MvcResult mvcResult = resultActions.andReturn();
+//        String contentAsString = mvcResult.getResponse().getContentAsString();
+//
+//        ContentDTO result = objectMapper.readValue(contentAsString, ContentDTO.class);
+//        System.out.println(result);
+//        Assertions.assertNotEquals(savedContent,result);
+//    }
 }

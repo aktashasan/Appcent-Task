@@ -66,26 +66,21 @@ public class ContentService {
         return Boolean.FALSE;
     }
 
-    public ContentDTO updateContent( ContentDTO contentDTO) {
-
-        Optional<Content> optional = contentRepository.findById(contentDTO.getId());
-
-        if(optional.isPresent()){
-
-        Content content = optional.get();
-        content.setId(contentDTO.getId());
-        content.setTicket(contentDTO.getTicket());
-        content.setPriority(contentDTO.getPriority());
-        content.setTitle(contentDTO.getTitle());
-        content.setExplanation(contentDTO.getExplanation());
-
-        contentRepository.save(content);
-
-        return ContentMapperImpl.toDTO(content);
-        }
-
-        return null;
-
-    }
+//    public ContentDTO updateContent( String id, ContentDTO contentDTO) {
+//
+//        Content content = contentRepository.findTopById(id);
+//
+//        if(content.isPresent()){
+//
+//        content = contentRepository.save(ContentMapperImpl.toEntity(contentDTO));
+//
+//        contentRepository.save(content);
+//
+//        return ContentMapperImpl.toDTO(content);
+//        }
+//
+//        return null;
+//
+//    }
 
 }

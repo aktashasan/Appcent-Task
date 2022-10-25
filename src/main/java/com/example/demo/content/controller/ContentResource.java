@@ -39,9 +39,9 @@ public class ContentResource {
         return ResponseEntity.ok(contentService.deleteContentById(id));
     }
 
-    @PostMapping("/content/update")
-    public ResponseEntity<ContentDTO> updateContent(@RequestBody ContentDTO contentDTO){
-        return ResponseEntity.ok((contentService.updateContent(contentDTO)));
-    }
+//    @PutMapping("/content/update/{id}")
+//    public ResponseEntity<ContentDTO> updateContent(@PathVariable(value = "id") String id,@RequestBody ContentDTO contentDTO){
+//        return ResponseEntity.ok((contentService.updateContent(contentDTO)));
+//    }
 
 }

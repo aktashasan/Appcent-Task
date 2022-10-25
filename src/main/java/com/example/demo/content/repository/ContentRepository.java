@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ContentRepository extends MongoRepository<Content, String> {
+    Content findTopById(String id);
 }
